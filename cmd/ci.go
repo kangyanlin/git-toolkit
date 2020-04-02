@@ -1,7 +1,9 @@
 package cmd
 
 import (
+	"fmt"
 	"github.com/spf13/cobra"
+	"os"
 	"qianxin.com/dengtao/git-toolkit/git"
 )
 
@@ -25,6 +27,13 @@ func NewCi() *cobra.Command {
 		Aliases: []string{"git-ci"},
 		Run: func(cmd *cobra.Command, args []string) {
 			git.CheckGitProject()
+
+			if !git.CheckStageFiles() {
+				fmt.Println("No staged any files")
+				os.Exit(1)
+			}
+
+			cm := &git.Message{Sob: git.GenSOB()}
 		},
 	}
 }

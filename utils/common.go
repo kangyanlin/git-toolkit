@@ -5,6 +5,7 @@ import (
 	"github.com/mitchellh/go-homedir"
 	"os"
 	"os/exec"
+	"os/user"
 	"path/filepath"
 	"runtime"
 )
@@ -19,7 +20,7 @@ func init() {
 
 	var err error
 
-	home, err: homedir.Dir()
+	home, err := homedir.Dir()
 	CheckAndExit(err)
 
 	GitToolkitHome = filepath.Join(home, "git-toolkit")
@@ -44,6 +45,38 @@ func CheckAndExit(err error) {
 	if !CheckErr(err) {
 		os.Exit(1)
 	}
+}
+
+func MustExecRtOut(name string, arg ...string) string {
+	cmd := exec.Command(name, arg...)
+	cmd.Stdin = os.Stdin
+	cmd.Stderr = os.Stderr
+
+	b, err := cmd.Output()
+
+	if err != nil {
+		fmt.Print(err)
+		os.Exit(1)
+	}
+
+	return string(b)
+}
+
+func MustExecNoOut(name string, arg ...string) {
+	cmd := exec.Command(name, arg...)
+	cmd.Stderr = os.Stderr
+	CheckAndExit(cmd.Run())
+}
+
+func TryExec(name string, arg ...string) error {
+	cmd := exec.Command(name, arg...)
+	return cmd.Run()
+}
+
+func Root() bool {
+	u, err := user.Current()
+	CheckAndExit(err)
+	return u.Uid == "0" || u.Gid == "0"
 }
 
 func CheckOS() {
