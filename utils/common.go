@@ -138,3 +138,10 @@ func CheckOS() {
 		os.Exit(1)
 	}
 }
+
+// 构建命令目录
+func GenBinPaths(dir string) []string {
+	return []string{
+		filepath.Join(dir, "git-ci"),
+	}
+}
