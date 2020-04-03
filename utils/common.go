@@ -1,8 +1,10 @@
 package utils
 
 import (
+	"bytes"
 	"fmt"
 	"github.com/mitchellh/go-homedir"
+	"io/ioutil"
 	"os"
 	"os/exec"
 	"os/user"
@@ -47,6 +49,20 @@ func CheckAndExit(err error) {
 	}
 }
 
+func MustExec(name string, arg ...string) string {
+	cmd := exec.Command(name, arg...)
+	cmd.Stdin = os.Stdin
+	cmd.Stderr = os.Stderr
+
+	b, err := cmd.Output()
+
+	if err != nil {
+		fmt.Print(err)
+		os.Exit(1)
+	}
+	return string(b)
+}
+
 func MustExecRtOut(name string, arg ...string) string {
 	cmd := exec.Command(name, arg...)
 	cmd.Stdin = os.Stdin
@@ -77,6 +93,43 @@ func Root() bool {
 	u, err := user.Current()
 	CheckAndExit(err)
 	return u.Uid == "0" || u.Gid == "0"
+}
+
+// 基于操作系统选择编辑器输入
+func OSEditInput() string {
+	f, err := ioutil.TempFile("", "git-toolkit")
+	CheckAndExit(err)
+
+	defer func() {
+		_ = f.Close()
+		_ = os.Remove(f.Name())
+	}()
+
+	// write utf8 bom
+	bom := []byte{0xef, 0xbb, 0xbf}
+	_, err = f.Write(bom)
+	CheckAndExit(err)
+
+	//获取系统编辑器
+	editor := "vim"
+	if runtime.GOOS == "windows" {
+		editor = "notepad"
+	}
+
+	if v := os.Getenv("VISUAL"); v != "" {
+		editor = v
+	} else if e := os.Getenv("EDITOR"); e != "" {
+		editor = e
+	}
+
+	//执行编辑器
+	MustExec(editor, f.Name())
+
+	raw, err := ioutil.ReadFile(f.Name())
+	CheckAndExit(err)
+	input := string(bytes.TrimPrefix(raw, bom))
+
+	return input
 }
 
 func CheckOS() {

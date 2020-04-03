@@ -1,7 +1,7 @@
 package git
 
 import (
-	"qianxin.com/dengtao/git-toolkit/utils"
+	"github.com/tonydeng/git-toolkit/utils"
 	"strings"
 )
 
@@ -29,7 +29,7 @@ const CommitTpl = `{{ .Type }}({{ .Scope }}): {{ .Subject }}
 
 {{ .Footer }}
 
-{{ .sub }}
+{{ .Sob }}
 `
 
 const CommitMessagePattern = `^(?:fixup!\s*)?(\w*)(\(([\w\$\.\*/-].*)\))?\: (.*)|^Merge\ branch(.*)`

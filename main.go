@@ -2,9 +2,9 @@ package main
 
 import (
 	"github.com/spf13/cobra"
+	"github.com/tonydeng/git-toolkit/cmd"
 	"os"
 	"path/filepath"
-	"qianxin.com/dengtao/git-toolkit/cmd"
 )
 
 func commandFor(basename string, rootCommand *cobra.Command) *cobra.Command {
