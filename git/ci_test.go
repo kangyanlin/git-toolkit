@@ -6,6 +6,11 @@ import (
 	"testing"
 )
 
+func TestInputSubject(t *testing.T) {
+	subject := InputSubject()
+	fmt.Println(subject)
+}
+
 func TestGenSOB(t *testing.T) {
 	sob := GenSOB()
 
@@ -14,8 +19,7 @@ func TestGenSOB(t *testing.T) {
 	}
 	fmt.Println(sob)
 
-	GIT_AUTHOR_IDENT := "Eric W. Biederman <ebiederm@lnxi.com> 1121223278 -0600"
-	authorInfo := strings.Fields(GIT_AUTHOR_IDENT)
+	authorInfo := strings.Fields("Eric W. Biederman <ebiederm@lnxi.com> 1121223278 -0600")
 
 	author := "Undefined"
 	email := "Undefined"

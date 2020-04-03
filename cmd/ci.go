@@ -3,12 +3,13 @@ package cmd
 import (
 	"fmt"
 	"github.com/spf13/cobra"
+	"github.com/tonydeng/git-toolkit/git"
 	"os"
-	"qianxin.com/dengtao/git-toolkit/git"
 )
 
 var fastCommit = false
 
+// 构造git ci命令，并执行
 func NewCi() *cobra.Command {
 	ciCmd := &cobra.Command{
 		Use:   "ci",
@@ -34,6 +35,25 @@ func NewCi() *cobra.Command {
 			}
 
 			cm := &git.Message{Sob: git.GenSOB()}
+
+			if fastCommit {
+				cm.Type = git.FEAT
+				cm.Scope = "Undefined"
+				cm.Subject = git.InputSubject()
+				git.Commit(cm)
+			} else {
+				cm.Type = git.SelectCommitType()
+				cm.Scope = git.InputScope()
+				cm.Subject = git.InputSubject()
+				cm.Body = git.InputBody()
+				cm.Footer = git.InputFooter()
+				cm.Sob = git.GenSOB()
+				git.Commit(cm)
+			}
 		},
 	}
+
+	ciCmd.Flags().BoolVarP(&fastCommit, "fast", "f", false, "快速提交")
+
+	return ciCmd
 }
