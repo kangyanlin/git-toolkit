@@ -19,18 +19,21 @@ func TestGenSOB(t *testing.T) {
 
 	author := "Undefined"
 	email := "Undefined"
-
+	emailIndex := 0
 	for i := 0; i < len(authorInfo); i++ {
 
 		if i < len(authorInfo)-2 {
 			//fmt.Println(authorInfo[i])
 			if strings.Index(authorInfo[i], "<") >= 0 {
 				email = authorInfo[i]
-			} else {
-
+				emailIndex = i
 			}
 		}
 	}
 
-	fmt.Println(email)
+	if emailIndex > 0 {
+		author = strings.Join(authorInfo[0:emailIndex], " ")
+	}
+
+	fmt.Println(author, email)
 }

@@ -19,17 +19,25 @@ func GenSOB() string {
 
 	author := "Undefined"
 	email := "Undefined"
+	emailIndex := 0
 
 	output := utils.MustExecRtOut("git", "var", "GIT_AUTHOR_IDENT")
 	authorInfo := strings.Fields(output)
 
-	if len(authorInfo) > 1 && authorInfo[0] != "" {
-		author = authorInfo[0]
+	for i := 0; i < len(authorInfo); i++ {
+
+		if i < len(authorInfo)-2 {
+			//fmt.Println(authorInfo[i])
+			if strings.Index(authorInfo[i], "<") >= 0 {
+				email = authorInfo[i]
+				emailIndex = i
+			}
+		}
 	}
 
-	if len(authorInfo) > 2 && authorInfo[1] != "" {
-		email = authorInfo[1]
+	if emailIndex > 0 {
+		author = strings.Join(authorInfo[0:emailIndex], " ")
 	}
 
-	return "Signed-off-by: " + author + " " + email
+	return strings.Join([]string{"Signed-off-by:", author, email}, " ")
 }
