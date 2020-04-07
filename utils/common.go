@@ -49,18 +49,12 @@ func CheckAndExit(err error) {
 	}
 }
 
-func MustExec(name string, arg ...string) string {
+func MustExec(name string, arg ...string) {
 	cmd := exec.Command(name, arg...)
 	cmd.Stdin = os.Stdin
+	cmd.Stdout = os.Stdout
 	cmd.Stderr = os.Stderr
-
-	b, err := cmd.Output()
-
-	if err != nil {
-		fmt.Print(err)
-		os.Exit(1)
-	}
-	return string(b)
+	CheckAndExit(cmd.Run())
 }
 
 func MustExecRtOut(name string, arg ...string) string {
@@ -143,14 +137,15 @@ func CheckOS() {
 func GenBinPaths(dir string) []string {
 	return []string{
 		filepath.Join(dir, "git-ci"),
-		filepath.Join(dir,"git-feat"),
-		filepath.Join(dir,"git-fix"),
-		filepath.Join(dir,"git-docs"),
-		filepath.Join(dir,"git-style"),
-		filepath.Join(dir,"git-refactor"),
-		filepath.Join(dir,"git-test"),
-		filepath.Join(dir,"git-chore"),
-		filepath.Join(dir,"git-pref"),
-		filepath.Join(dir,"git-hotfix"),
+		filepath.Join(dir, "git-cm"),
+		filepath.Join(dir, "git-feat"),
+		filepath.Join(dir, "git-fix"),
+		filepath.Join(dir, "git-docs"),
+		filepath.Join(dir, "git-style"),
+		filepath.Join(dir, "git-refactor"),
+		filepath.Join(dir, "git-test"),
+		filepath.Join(dir, "git-chore"),
+		filepath.Join(dir, "git-pref"),
+		filepath.Join(dir, "git-hotfix"),
 	}
 }
