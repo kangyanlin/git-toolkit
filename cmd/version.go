@@ -14,6 +14,7 @@ var versionTpl = `
 
 Name: git-toolkit
 Version: %s
+Author: Tony Deng <wolf.deng@gmail.com>
 Arch: %s
 BuildTime: %s
 CommitID: %s
