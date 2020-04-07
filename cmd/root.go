@@ -29,6 +29,7 @@ func init() {
 
 	// Commit Message相关命令
 	RootCmd.AddCommand(NewCi())
+	RootCmd.AddCommand(NewCm())
 
 	// 创建分支相关命令
 	RootCmd.AddCommand(NewFeatBranch())
