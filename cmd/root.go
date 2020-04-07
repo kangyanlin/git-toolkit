@@ -42,6 +42,9 @@ func init() {
 	RootCmd.AddCommand(NewTestBranch())
 	RootCmd.AddCommand(NewChoreBranch())
 
+	// 远程仓库相关命令
+	RootCmd.AddCommand(NewPs())
+
 	// 版本信息
 	RootCmd.AddCommand(NewVersion())
 }
