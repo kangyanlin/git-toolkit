@@ -143,5 +143,14 @@ func CheckOS() {
 func GenBinPaths(dir string) []string {
 	return []string{
 		filepath.Join(dir, "git-ci"),
+		filepath.Join(dir,"git-feat"),
+		filepath.Join(dir,"git-fix"),
+		filepath.Join(dir,"git-docs"),
+		filepath.Join(dir,"git-style"),
+		filepath.Join(dir,"git-refactor"),
+		filepath.Join(dir,"git-test"),
+		filepath.Join(dir,"git-chore"),
+		filepath.Join(dir,"git-pref"),
+		filepath.Join(dir,"git-hotfix"),
 	}
 }
