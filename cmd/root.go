@@ -29,6 +29,7 @@ func init() {
 
 	// Commit Message相关命令
 	RootCmd.AddCommand(NewCi())
+	RootCmd.AddCommand(NewCm())
 
 	// 创建分支相关命令
 	RootCmd.AddCommand(NewFeatBranch())
@@ -40,6 +41,9 @@ func init() {
 	RootCmd.AddCommand(NewHotFixBranch())
 	RootCmd.AddCommand(NewTestBranch())
 	RootCmd.AddCommand(NewChoreBranch())
+
+	// 远程仓库相关命令
+	RootCmd.AddCommand(NewPs())
 
 	// 版本信息
 	RootCmd.AddCommand(NewVersion())
