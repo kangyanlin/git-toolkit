@@ -4,21 +4,64 @@
 
 本工具集包含几个部分，自定义命令，`Hook`脚本，以及配置模板
 
-## 安装
+## 下载 & 安装
 
-**使用curl**
+### 下载
+
+- [macOS](https://github.com/tonydeng/git-toolkit/git-toolkit/raw/master/dist/git-toolkit_darwin_amd64)
+- [Linux 64](https://github.com/tonydeng/git-toolkit/git-toolkit/raw/master/dist/git-toolkit_linux_amd64)
+- [Linux 32](https://github.com/tonydeng/git-toolkit/git-toolkit/raw/master/dist/git-toolkit_linux_386)
+
+### 查看版本
 
 ```bash
-bash -c "$(curl -fsSL https://raw.githubusercontent.com/tonydeng/git-toolkit/golang/installer.sh)"
+./git-toolkit version
 ```
 
-**使用wget**
+当你通过上面命令查看到如下信息时，说明下载成功。
 
 ```bash
-bash -c "$(wget https://raw.githubusercontent.com/tonydeng/git-toolkit/golang/installer.sh -O -)"
+
+ ██████╗ ██╗████████╗    ████████╗ ██████╗  ██████╗ ██╗     ██╗  ██╗██╗████████╗
+██╔════╝ ██║╚══██╔══╝    ╚══██╔══╝██╔═══██╗██╔═══██╗██║     ██║ ██╔╝██║╚══██╔══╝
+██║  ███╗██║   ██║          ██║   ██║   ██║██║   ██║██║     █████╔╝ ██║   ██║   
+██║   ██║██║   ██║          ██║   ██║   ██║██║   ██║██║     ██╔═██╗ ██║   ██║   
+╚██████╔╝██║   ██║          ██║   ╚██████╔╝╚██████╔╝███████╗██║  ██╗██║   ██║   
+ ╚═════╝ ╚═╝   ╚═╝          ╚═╝    ╚═════╝  ╚═════╝ ╚══════╝╚═╝  ╚═╝╚═╝   ╚═╝
+
+
+Name: git-toolkit
+Version: v2.0.0
+Arch: darwin/amd64
+BuildTime: 2020-04-07 16:59:43
 ```
 
-## 介绍
+### 安装
+
+```bash
+./git-toolkit install
+```
+
+当看到如下信息，说明安装成功
+
+```bash
+👉 remove /Users/tonydeng/git-toolkit
+📥 mkdir /Users/tonydeng/git-toolkit/hooks
+📥 copy file /Users/tonydeng/git-toolkit/git-toolkit
+📥 install symbolic /usr/local/bin/git-ci
+📥 install symbolic /usr/local/bin/git-feat
+📥 install symbolic /usr/local/bin/git-fix
+📥 install symbolic /usr/local/bin/git-docs
+📥 install symbolic /usr/local/bin/git-style
+📥 install symbolic /usr/local/bin/git-refactor
+📥 install symbolic /usr/local/bin/git-test
+📥 install symbolic /usr/local/bin/git-chore
+📥 install symbolic /usr/local/bin/git-pref
+📥 install symbolic /usr/local/bin/git-hotfix
+📥 config set core.hooksPath /Users/tonydeng/git-toolkit/hooks
+```
+
+## 使用介绍
 
 ### 自定义命令
 
