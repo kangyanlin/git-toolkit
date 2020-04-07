@@ -19,7 +19,7 @@ func Uninstall(dir string) {
 		cmd.Stdout = os.Stdout
 		CheckAndExit(cmd.Run())
 	} else {
-		fmt.Println("👉 remove %s\n", GitToolkitHome)
+		fmt.Printf("👉 remove %s\n", GitToolkitHome)
 		_ = os.RemoveAll(GitToolkitHome)
 
 		var binPaths = GenBinPaths(dir)
