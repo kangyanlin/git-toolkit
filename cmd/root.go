@@ -21,9 +21,24 @@ func init() {
 	uninstallCmd := NewUninstall()
 	uninstallCmd.PersistentFlags().StringVar(&installDir, "dir", "/usr/local/bin/", "install dir")
 
+	// 添加自定义Git命令
+
+	// 安装 & 卸载
 	RootCmd.AddCommand(installCmd)
 	RootCmd.AddCommand(uninstallCmd)
 
-	// 添加自定义Git命令
+	// Commit Message相关命令
 	RootCmd.AddCommand(NewCi())
+
+	// 创建分支相关命令
+	RootCmd.AddCommand(NewFeatBranch())
+	RootCmd.AddCommand(NewFixBranch())
+	RootCmd.AddCommand(NewDocsBranch())
+	RootCmd.AddCommand(NewStyleBranch())
+	RootCmd.AddCommand(NewRefactorBranch())
+	RootCmd.AddCommand(NewPerfBranch())
+	RootCmd.AddCommand(NewHotFixBranch())
+	RootCmd.AddCommand(NewTestBranch())
+	RootCmd.AddCommand(NewChoreBranch())
+
 }
