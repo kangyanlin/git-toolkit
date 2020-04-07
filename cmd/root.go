@@ -14,5 +14,16 @@ var RootCmd = &cobra.Command{
 }
 
 func init() {
+	// 添加install & uninstall 命令
+	installCmd := NewInstall()
+	installCmd.PersistentFlags().StringVar(&installDir, "dir", "/usr/local/bin", "install dir")
 
+	uninstallCmd := NewUninstall()
+	uninstallCmd.PersistentFlags().StringVar(&installDir, "dir", "/usr/local/bin/", "install dir")
+
+	RootCmd.AddCommand(installCmd)
+	RootCmd.AddCommand(uninstallCmd)
+
+	// 添加自定义Git命令
+	RootCmd.AddCommand(NewCi())
 }

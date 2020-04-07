@@ -6,6 +6,7 @@ import (
 )
 
 type CommitType string
+
 type RepoType string
 
 const Cmd = "git"
@@ -23,7 +24,21 @@ const (
 	EXIT     CommitType = "exit"
 )
 
-const CommitTpl = `{{ .Type }}({{ .Scope }}): {{ .Subject }}
+// git emoji参考 https://gitmoji.carloscuesta.me/
+var CommitEmoji = map[CommitType]string{
+	FEAT: ":sparkles:",
+	FIX: ":bug:",
+	DOCS: ":pencil:",
+	STYLE: ":art:",
+	REFACTOR: ":hammer:",
+	TEST: ":white_check_mark:",
+	CHORE: ":wrench:",
+	PERF: ":zap:",
+	HOTFIX: ":ambulance:",
+}
+
+
+const CommitTpl = `{{ .Emoji }} {{ .Type }}({{ .Scope }}): {{ .Subject }}
 
 {{ .Body }}
 

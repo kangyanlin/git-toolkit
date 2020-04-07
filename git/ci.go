@@ -19,6 +19,7 @@ type TypeMessage struct {
 
 type Message struct {
 	Type    CommitType
+	Emoji   string
 	Scope   string
 	Subject string
 	Body    string
@@ -30,13 +31,14 @@ type Message struct {
 func SelectCommitType() CommitType {
 	commitTypes := []TypeMessage{
 		{Type: FEAT, ZHDescription: "新功能", ENDescription: "Introducing new features"},
-		{Type: FIX, ZHDescription: "修复Bug", ENDescription: "Bug fix"},
+		{Type: FIX, ZHDescription: "修复Bug", ENDescription: "Fixing a bug"},
 		{Type: DOCS, ZHDescription: "添加文档", ENDescription: "Writing docs"},
 		{Type: STYLE, ZHDescription: "调整格式", ENDescription: "Improving structure/format of the code"},
 		{Type: REFACTOR, ZHDescription: "重构代码", ENDescription: "Refactoring code"},
 		{Type: TEST, ZHDescription: "添加测试", ENDescription: "When adding missing tests"},
-		{Type: CHORE, ZHDescription: "CI/CD变动", ENDescription: "Changing CI/CD"},
+		{Type: CHORE, ZHDescription: "构建过程或辅助工具的变动", ENDescription: "Changing configuration files"},
 		{Type: PERF, ZHDescription: "性能优化", ENDescription: "Improving performance"},
+		{Type: HOTFIX, ZHDescription: "关键的热修复补丁", ENDescription: "Critical hotfix"},
 		{Type: EXIT, ZHDescription: "退出", ENDescription: "Exit commit"},
 	}
 
@@ -65,6 +67,11 @@ func SelectCommitType() CommitType {
 	}
 
 	return commitTypes[idx].Type
+}
+
+// 获取Commit Type对应的Emoji
+func GenEmoji(commitType CommitType) string {
+	return CommitEmoji[commitType]
 }
 
 // 输入影响范围
