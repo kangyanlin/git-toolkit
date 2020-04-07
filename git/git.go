@@ -26,17 +26,16 @@ const (
 
 // git emoji参考 https://gitmoji.carloscuesta.me/
 var CommitEmoji = map[CommitType]string{
-	FEAT: ":sparkles:",
-	FIX: ":bug:",
-	DOCS: ":pencil:",
-	STYLE: ":art:",
+	FEAT:     ":sparkles:",
+	FIX:      ":bug:",
+	DOCS:     ":pencil:",
+	STYLE:    ":art:",
 	REFACTOR: ":hammer:",
-	TEST: ":white_check_mark:",
-	CHORE: ":wrench:",
-	PERF: ":zap:",
-	HOTFIX: ":ambulance:",
+	TEST:     ":white_check_mark:",
+	CHORE:    ":wrench:",
+	PERF:     ":zap:",
+	HOTFIX:   ":ambulance:",
 }
-
 
 const CommitTpl = `{{ .Emoji }} {{ .Type }}({{ .Scope }}): {{ .Subject }}
 
@@ -62,4 +61,8 @@ func CheckLastCommitInfo() *[]string {
 	title := utils.MustExecRtOut(Cmd, "log", "-1", "--pretty=format:%s")
 	desc := utils.MustExecRtOut(Cmd, "log", "-1", "--pretty=format:%b")
 	return &[]string{title, desc}
+}
+
+func Checkout(prefix CommitType, branch string) {
+	utils.MustExec(Cmd, "checkout", "-b", string(prefix)+"/"+branch)
 }
