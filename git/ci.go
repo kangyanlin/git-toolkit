@@ -43,8 +43,8 @@ func SelectCommitType() CommitType {
 	}
 
 	cfg := &promptx.SelectConfig{
-		ActiveTpl:    "»  {{ .Type | cyan }} ({{ .ENDescription | cyan }})",
-		InactiveTpl:  "  {{ .Type | white }} ({{ .ENDescription | white }})",
+		ActiveTpl:    "» {{ .Type | cyan }} ({{ .ENDescription | cyan }})",
+		InactiveTpl:  " {{ .Type | white }} ({{ .ENDescription | white }})",
 		SelectPrompt: "Commit Type",
 		SelectedTpl:  "{{ \"» \" | green }}{{\"Type:\" | cyan }} {{ .Type }}",
 		DisPlaySize:  9,
@@ -82,7 +82,7 @@ func InputScope() string {
 		} else {
 			return nil
 		}
-	}, "Scope")
+	}, "Scope(本次提交的范围，建议填写版本号):")
 
 	return strings.TrimSpace(p.Run())
 }
@@ -97,7 +97,7 @@ func InputSubject() string {
 		} else {
 			return nil
 		}
-	}, "Subject:")
+	}, "Subject(请添加简短的、必要的对本次提交的描述):")
 	return strings.TrimSpace(p.Run())
 }
 
@@ -105,7 +105,7 @@ func InputSubject() string {
 func InputBody() string {
 	p := promptx.NewDefaultPrompt(func(line []rune) error {
 		return nil
-	}, "Body")
+	}, "Body(添加一个完整提交描述):")
 
 	body := strings.TrimSpace(p.Run())
 
@@ -120,7 +120,7 @@ func InputBody() string {
 func InputFooter() string {
 	p := promptx.NewDefaultPrompt(func(line []rune) error {
 		return nil
-	}, "Footer:")
+	}, "Footer(列出本次解决的、可以关闭的所有问题，建议使用关键字refs、close):")
 	return strings.TrimSpace(p.Run())
 }
 
