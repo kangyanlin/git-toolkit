@@ -15,3 +15,11 @@ func TestRoot(t *testing.T) {
 
 	fmt.Printf("%s = root is %t\n", u.Username, Root())
 }
+
+//func TestOSEditInput(t *testing.T) {
+	//input := OSEditInput()
+	//if len(input) != 0 {
+	//}
+	//
+	//fmt.Printf("input:'%s'",input)
+//}
