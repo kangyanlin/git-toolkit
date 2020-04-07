@@ -38,11 +38,13 @@ func NewCi() *cobra.Command {
 
 			if fastCommit {
 				cm.Type = git.FEAT
+				cm.Emoji = git.GenEmoji(cm.Type)
 				cm.Scope = "Undefined"
 				cm.Subject = git.InputSubject()
 				git.Commit(cm)
 			} else {
 				cm.Type = git.SelectCommitType()
+				cm.Emoji = git.GenEmoji(cm.Type)
 				cm.Scope = git.InputScope()
 				cm.Subject = git.InputSubject()
 				cm.Body = git.InputBody()
