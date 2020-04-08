@@ -66,3 +66,12 @@ func CheckLastCommitInfo() *[]string {
 func Checkout(prefix CommitType, branch string) {
 	utils.MustExec(Cmd, "checkout", "-b", string(prefix)+"/"+branch)
 }
+
+func GetCurrentBranch() string {
+	// 1.8+ git symbolic-ref --short HEAD
+	return strings.TrimSpace(utils.MustExecRtOut(Cmd, "rev-parse", "--abbrev-ref", "HEAD"))
+}
+
+func Push() {
+	utils.MustExec(Cmd, "push", "origin", strings.TrimSpace(GetCurrentBranch()))
+}

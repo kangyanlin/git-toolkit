@@ -147,5 +147,6 @@ func GenBinPaths(dir string) []string {
 		filepath.Join(dir, "git-chore"),
 		filepath.Join(dir, "git-pref"),
 		filepath.Join(dir, "git-hotfix"),
+		filepath.Join(dir, "git-ps"),
 	}
 }
