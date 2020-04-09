@@ -5,10 +5,10 @@ import (
 	"fmt"
 	"github.com/mritd/promptx"
 	"github.com/tonydeng/git-toolkit/utils"
-	"html/template"
 	"io/ioutil"
 	"os"
 	"strings"
+	"text/template"
 )
 
 type TypeMessage struct {

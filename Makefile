@@ -7,7 +7,7 @@ all:
 		-output="dist/{{.Dir}}_{{.OS}}_{{.Arch}}" \
 		-ldflags "-X 'github.com/tonydeng/git-toolkit/cmd.Version=${BUILD_VERSION}' \
 		-X 'github.com/tonydeng/git-toolkit/cmd.BuildTime=${BUILD_TIME}' \
-		-X 'github.com/tonydeng/git-toolkit/cmd.CommitID=${BUILD_SHA1}'"
+		-X 'github.com/tonydeng/git-toolkit/cmd.CommitID=${COMMIT_SHA1}'"
 
 clean:
 	rm -rf dist
@@ -15,7 +15,7 @@ clean:
 install:
 	go install -ldflags "-X 'github.com/tonydeng/git-toolkit/cmd.Version=${BUILD_VERSION}' \
        					 -X 'github.com/tonydeng/git-toolkit/cmd.BuildTime=${BUILD_TIME}' \
-       					 -X 'github.com/tonydeng/git-toolkit/cmd.CommitID=${BUILD_SHA1}'"
+       					 -X 'github.com/tonydeng/git-toolkit/cmd.CommitID=${COMMIT_SHA1}'"
 
 .PHONY: all clean install
 
