@@ -1,24 +1,10 @@
 package cmd
 
 import (
-	"encoding/base64"
 	"fmt"
 	"github.com/spf13/cobra"
-	"runtime"
+	"github.com/tonydeng/git-toolkit/utils"
 )
-
-var bannerBase64 = "CiDilojilojilojilojilojilojilZcg4paI4paI4pWX4paI4paI4paI4paI4paI4paI4paI4paI4pWXICAgIOKWiOKWiOKWiOKWiOKWiOKWiOKWiOKWiOKVlyDilojilojilojilojilojilojilZcgIOKWiOKWiOKWiOKWiOKWiOKWiOKVlyDilojilojilZcgICAgIOKWiOKWiOKVlyAg4paI4paI4pWX4paI4paI4pWX4paI4paI4paI4paI4paI4paI4paI4paI4pWXCuKWiOKWiOKVlOKVkOKVkOKVkOKVkOKVnSDilojilojilZHilZrilZDilZDilojilojilZTilZDilZDilZ0gICAg4pWa4pWQ4pWQ4paI4paI4pWU4pWQ4pWQ4pWd4paI4paI4pWU4pWQ4pWQ4pWQ4paI4paI4pWX4paI4paI4pWU4pWQ4pWQ4pWQ4paI4paI4pWX4paI4paI4pWRICAgICDilojilojilZEg4paI4paI4pWU4pWd4paI4paI4pWR4pWa4pWQ4pWQ4paI4paI4pWU4pWQ4pWQ4pWdCuKWiOKWiOKVkSAg4paI4paI4paI4pWX4paI4paI4pWRICAg4paI4paI4pWRICAgICAgICAgIOKWiOKWiOKVkSAgIOKWiOKWiOKVkSAgIOKWiOKWiOKVkeKWiOKWiOKVkSAgIOKWiOKWiOKVkeKWiOKWiOKVkSAgICAg4paI4paI4paI4paI4paI4pWU4pWdIOKWiOKWiOKVkSAgIOKWiOKWiOKVkSAgIArilojilojilZEgICDilojilojilZHilojilojilZEgICDilojilojilZEgICAgICAgICAg4paI4paI4pWRICAg4paI4paI4pWRICAg4paI4paI4pWR4paI4paI4pWRICAg4paI4paI4pWR4paI4paI4pWRICAgICDilojilojilZTilZDilojilojilZcg4paI4paI4pWRICAg4paI4paI4pWRICAgCuKVmuKWiOKWiOKWiOKWiOKWiOKWiOKVlOKVneKWiOKWiOKVkSAgIOKWiOKWiOKVkSAgICAgICAgICDilojilojilZEgICDilZrilojilojilojilojilojilojilZTilZ3ilZrilojilojilojilojilojilojilZTilZ3ilojilojilojilojilojilojilojilZfilojilojilZEgIOKWiOKWiOKVl+KWiOKWiOKVkSAgIOKWiOKWiOKVkSAgIAog4pWa4pWQ4pWQ4pWQ4pWQ4pWQ4pWdIOKVmuKVkOKVnSAgIOKVmuKVkOKVnSAgICAgICAgICDilZrilZDilZ0gICAg4pWa4pWQ4pWQ4pWQ4pWQ4pWQ4pWdICDilZrilZDilZDilZDilZDilZDilZ0g4pWa4pWQ4pWQ4pWQ4pWQ4pWQ4pWQ4pWd4pWa4pWQ4pWdICDilZrilZDilZ3ilZrilZDilZ0gICDilZrilZDilZ0K"
-
-var versionTpl = `
-%s
-
-Name: git-toolkit
-Version: %s
-Author: Tony Deng <wolf.deng@gmail.com>
-Arch: %s
-BuildTime: %s
-CommitID: %s
-`
 
 var (
 	Version   string
@@ -34,8 +20,7 @@ func NewVersion() *cobra.Command {
 		Long: `
 Print version.`,
 		Run: func(cmd *cobra.Command, args []string) {
-			banner, _ := base64.StdEncoding.DecodeString(bannerBase64)
-			fmt.Printf(versionTpl, banner, Version, runtime.GOOS+"/"+runtime.GOARCH, BuildTime, CommitID)
+			fmt.Println(utils.GenVersion(Version,BuildTime,CommitID))
 		},
 	}
 }
