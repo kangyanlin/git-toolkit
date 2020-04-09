@@ -1,9 +1,11 @@
 package cmd
 
-import "github.com/spf13/cobra"
+import (
+	"github.com/spf13/cobra"
+	"github.com/tonydeng/git-toolkit/utils"
+)
 
 var cfgFile string
-var Verbose bool
 var RootCmd = &cobra.Command{
 	Use:   "git-toolkit",
 	Short: "Git工具集",
@@ -22,7 +24,8 @@ func init() {
 	uninstallCmd.PersistentFlags().StringVar(&installDir, "dir", "/usr/local/bin/", "install dir")
 
 	//持久标志
-	RootCmd.PersistentFlags().BoolVarP(&Verbose, "verbose", "v", false, "verbose out")
+	version := utils.GenVersion(Version, BuildTime, CommitID)
+	RootCmd.SetVersionTemplate(version)
 
 	// 添加自定义Git命令
 	// 安装 & 卸载
