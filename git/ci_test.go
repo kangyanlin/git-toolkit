@@ -41,3 +41,16 @@ func TestGenSOB(t *testing.T) {
 
 	fmt.Println(author, email)
 }
+
+func TestCommit(t *testing.T) {
+	cm := &Message{
+		Type:    FEAT,
+		Emoji:   CommitEmoji[FEAT],
+		Scope:   "2.0",
+		Subject: "测试",
+		Body:    "哈哈哈",
+		Footer:  "",
+		Sob:     "Signed-off-by: Tony Deng <wolf.deng@gmail.com>",
+	}
+	Commit(cm)
+}
