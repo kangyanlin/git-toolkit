@@ -4,6 +4,7 @@ import (
 	"fmt"
 	"github.com/spf13/cobra"
 	"github.com/tonydeng/git-toolkit/git"
+	"github.com/tonydeng/git-toolkit/utils"
 	"os"
 )
 
@@ -12,7 +13,7 @@ var fastCommit = false
 // 构造git ci命令，并执行
 func NewCi() *cobra.Command {
 	ciCmd := &cobra.Command{
-		Use:   "ci",
+		Use:   "git-ci",
 		Short: "交互式输入 commit message",
 		Long: `
 交互式输入 git commit message, commit message格式为
@@ -25,6 +26,7 @@ func NewCi() *cobra.Command {
 
 该格式来源于 Angular 社区提交规范
 `,
+		Version: utils.GenVersion(Version, BuildTime, CommitID),
 		Aliases: []string{"git-ci"},
 		Run: func(cmd *cobra.Command, args []string) {
 			git.CheckGitProject()
