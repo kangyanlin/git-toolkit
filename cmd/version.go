@@ -15,7 +15,7 @@ var (
 // 构建打印版本命令
 func NewVersion() *cobra.Command {
 	return &cobra.Command{
-		Use:   "version",
+		Use:   "git-toolkit version",
 		Short: "Print version",
 		Long: `
 Print version.`,

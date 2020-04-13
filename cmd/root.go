@@ -10,6 +10,7 @@ var RootCmd = &cobra.Command{
 	Use:   "git-toolkit",
 	Short: "Git工具集",
 	Long:  "一个用于提高Git命令使用效率和规范Git Commit Message的工具集",
+	Version: utils.GenVersion(Version, BuildTime, CommitID),
 	Run: func(cmd *cobra.Command, args []string) {
 		_ = cmd.Help()
 	},
