@@ -8,7 +8,7 @@ import (
 // 构建卸载命令
 func NewUninstall() *cobra.Command {
 	return &cobra.Command{
-		Use:     "uninstall",
+		Use:     "git-toolkit uninstall",
 		Short:   "Uninstall git-toolkit",
 		Long:    "Uninstall git-toolkit.",
 		Aliases: []string{"uninstall"},

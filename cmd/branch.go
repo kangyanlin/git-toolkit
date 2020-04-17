@@ -3,6 +3,7 @@ package cmd
 import (
 	"github.com/spf13/cobra"
 	"github.com/tonydeng/git-toolkit/git"
+	"github.com/tonydeng/git-toolkit/utils"
 )
 
 // Create feature branch
@@ -11,6 +12,7 @@ func NewFeatBranch() *cobra.Command {
 		Use:     "feat BRANCH_NAME",
 		Short:   "Create feature branch",
 		Long:    "Create a branch with a prefix of feat.",
+		Version: utils.GenVersion(Version, BuildTime, CommitID),
 		Aliases: []string{"git-feat"},
 		Run: func(cmd *cobra.Command, args []string) {
 			if len(args) != 1 {
@@ -28,6 +30,7 @@ func NewFixBranch() *cobra.Command {
 		Use:     "fix BRANCH_NAME",
 		Short:   "Create fix branch",
 		Long:    "Create a branch with a prefix of fix.",
+		Version: utils.GenVersion(Version, BuildTime, CommitID),
 		Aliases: []string{"git-fix"},
 		Run: func(cmd *cobra.Command, args []string) {
 			if len(args) != 1 {
@@ -46,6 +49,7 @@ func NewHotFixBranch() *cobra.Command {
 		Short: "Create hotfix branch",
 		Long: `
 Create a branch with a prefix of hotfix.`,
+		Version: utils.GenVersion(Version, BuildTime, CommitID),
 		Aliases: []string{"git-hotfix"},
 		Run: func(cmd *cobra.Command, args []string) {
 			if len(args) != 1 {
@@ -64,6 +68,7 @@ func NewPerfBranch() *cobra.Command {
 		Short: "Create perf branch",
 		Long: `
 Create a branch with a prefix of perf.`,
+		Version: utils.GenVersion(Version, BuildTime, CommitID),
 		Aliases: []string{"git-perf"},
 		Run: func(cmd *cobra.Command, args []string) {
 			if len(args) != 1 {
@@ -82,6 +87,7 @@ func NewRefactorBranch() *cobra.Command {
 		Short: "Create refactor branch",
 		Long: `
 Create a branch with a prefix of refactor.`,
+		Version: utils.GenVersion(Version, BuildTime, CommitID),
 		Aliases: []string{"git-refactor"},
 		Run: func(cmd *cobra.Command, args []string) {
 			if len(args) != 1 {
@@ -100,6 +106,7 @@ func NewTestBranch() *cobra.Command {
 		Short: "Create test branch",
 		Long: `
 Create a branch with a prefix of test.`,
+		Version: utils.GenVersion(Version, BuildTime, CommitID),
 		Aliases: []string{"git-test"},
 		Run: func(cmd *cobra.Command, args []string) {
 			if len(args) != 1 {
@@ -118,6 +125,7 @@ func NewChoreBranch() *cobra.Command {
 		Short: "Create chore branch",
 		Long: `
 Create a branch with a prefix of chore.`,
+		Version: utils.GenVersion(Version, BuildTime, CommitID),
 		Aliases: []string{"git-chore"},
 		Run: func(cmd *cobra.Command, args []string) {
 			if len(args) != 1 {
@@ -137,6 +145,7 @@ func NewStyleBranch() *cobra.Command {
 		Short: "Create style branch",
 		Long: `
 Create a branch with a prefix of style.`,
+		Version: utils.GenVersion(Version, BuildTime, CommitID),
 		Aliases: []string{"git-style"},
 		Run: func(cmd *cobra.Command, args []string) {
 			if len(args) != 1 {
@@ -155,6 +164,7 @@ func NewDocsBranch() *cobra.Command {
 		Short: "Create docs branch",
 		Long: `
 Create a branch with a prefix of docs.`,
+		Version: utils.GenVersion(Version, BuildTime, CommitID),
 		Aliases: []string{"git-docs"},
 		Run: func(cmd *cobra.Command, args []string) {
 			if len(args) != 1 {
