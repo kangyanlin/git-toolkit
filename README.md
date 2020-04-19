@@ -8,10 +8,7 @@
 
 ### 下载
 
-- [macOS](https://github.com/tonydeng/git-toolkit/git-toolkit/raw/master/dist/git-toolkit_darwin_amd64)
-- [Linux 64](https://github.com/tonydeng/git-toolkit/git-toolkit/raw/master/dist/git-toolkit_linux_amd64)
-- [Linux 32](https://github.com/tonydeng/git-toolkit/git-toolkit/raw/master/dist/git-toolkit_linux_386)
-
+TODO:
 ### 查看版本
 
 ```bash
