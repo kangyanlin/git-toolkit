@@ -8,7 +8,10 @@
 
 ### 下载
 
-TODO:
+- [macOS](https://git-open.qianxin-inc.cn/dengtao/git-toolkit/git-toolkit/raw/master/dist/git-toolkit_darwin_amd64)
+- [Linux 64](https://git-open.qianxin-inc.cn/dengtao/git-toolkit/git-toolkit/raw/master/dist/git-toolkit_linux_amd64)
+- [Linux 32](https://git-open.qianxin-inc.cn/dengtao/git-toolkit/git-toolkit/raw/master/dist/git-toolkit_linux_386)
+
 ### 查看版本
 
 ```bash
@@ -18,8 +21,6 @@ TODO:
 当你通过上面命令查看到如下信息时，说明下载成功。
 
 ```bash
-
-
  ██████╗ ██╗████████╗    ████████╗ ██████╗  ██████╗ ██╗     ██╗  ██╗██╗████████╗
 ██╔════╝ ██║╚══██╔══╝    ╚══██╔══╝██╔═══██╗██╔═══██╗██║     ██║ ██╔╝██║╚══██╔══╝
 ██║  ███╗██║   ██║          ██║   ██║   ██║██║   ██║██║     █████╔╝ ██║   ██║   
