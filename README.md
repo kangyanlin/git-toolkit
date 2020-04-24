@@ -45,10 +45,11 @@ BuildTime: 2020-04-07 17:51:51
 当看到如下信息，说明安装成功
 
 ```bash
-👉 remove /Users/tonydeng/git-toolkit
-📥 mkdir /Users/tonydeng/git-toolkit/hooks
-📥 copy file /Users/tonydeng/git-toolkit/git-toolkit
+👉 remove /usr/local/git-toolkit
+📥 mkdir /usr/local/git-toolkit/hooks
+📥 copy file /usr/local/git-toolkit/git-toolkit
 📥 install symbolic /usr/local/bin/git-ci
+📥 install symbolic /usr/local/bin/git-cm
 📥 install symbolic /usr/local/bin/git-feat
 📥 install symbolic /usr/local/bin/git-fix
 📥 install symbolic /usr/local/bin/git-docs
@@ -58,7 +59,8 @@ BuildTime: 2020-04-07 17:51:51
 📥 install symbolic /usr/local/bin/git-chore
 📥 install symbolic /usr/local/bin/git-pref
 📥 install symbolic /usr/local/bin/git-hotfix
-📥 config set core.hooksPath /Users/tonydeng/git-toolkit/hooks
+📥 install symbolic /usr/local/bin/git-ps
+📥 config set core.hooksPath /usr/local/git-toolkit/hooks
 ```
 
 ## 使用介绍
@@ -76,4 +78,5 @@ BuildTime: 2020-04-07 17:51:51
 | chore | 创建`chore`分支 |
 | perf | 创建`perf`分支 |
 | hotfix | 创建`hotfix`分支(通常用于对`master`紧急修复) |
+| ps | 等同于`git push origin current_branch` |
 
