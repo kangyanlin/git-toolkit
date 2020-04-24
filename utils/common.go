@@ -3,7 +3,6 @@ package utils
 import (
 	"bytes"
 	"fmt"
-	"github.com/mitchellh/go-homedir"
 	"io/ioutil"
 	"os"
 	"os/exec"
@@ -22,7 +21,7 @@ func init() {
 
 	var err error
 
-	home, err := homedir.Dir()
+	home := "/usr/local"
 	CheckAndExit(err)
 
 	GitToolkitHome = filepath.Join(home, "git-toolkit")
