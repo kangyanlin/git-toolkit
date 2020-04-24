@@ -41,8 +41,23 @@ func Install(dir string) {
 			fmt.Printf("📥 install symbolic %s\n", binPath)
 			CheckAndExit(os.Symlink(InstallPath, binPath))
 		}
-
-		fmt.Printf("📥 config set core.hooksPath %s\n", HooksPath)
-		MustExec("git", "config", "--global", "core.hooksPath", HooksPath)
+		SetGlobalConfig()
 	}
+}
+
+// 设置Git整体定制配置
+func SetGlobalConfig() {
+	// 设置Alias
+	MustExec(Cmd, "config", "--global", "alias.co", "checkout")
+	MustExec(Cmd, "config", "--global", "alias.br", "branch")
+	MustExec(Cmd, "config", "--global", "alias.st", "status")
+	MustExec(Cmd, "config", "--global", "alias.lg", "log",
+		"--oneline", "--decorate", "--graph",
+		"--pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen (%cr) %C(bold blue)<%an>%Creset'",
+		"--abbrev-commit")
+	MustExec(Cmd, "config", "--global", "alias.mrg", "merge", "--no-ff")
+
+	// 设置自定义的HooksPath
+	fmt.Printf("📥 config set core.hooksPath %s\n", HooksPath)
+	MustExec(Cmd, "config", "--global", "core.hooksPath", HooksPath)
 }
