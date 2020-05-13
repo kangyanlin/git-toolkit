@@ -8,9 +8,9 @@
 
 ### 下载
 
-- [macOS](https://git-open.qianxin-inc.cn/dengtao/git-toolkit/raw/master/dist/git-toolkit_darwin_amd64)
-- [Linux 64](https://git-open.qianxin-inc.cn/dengtao/git-toolkit/raw/master/dist/git-toolkit_linux_amd64)
-- [Linux 32](https://git-open.qianxin-inc.cn/dengtao/git-toolkit/raw/master/dist/git-toolkit_linux_386)
+- [macOS](https://github.com/tonydeng/git-toolkit/raw/github/golang/dist/git-toolkit_darwin_amd64)
+- [Linux 64](https://github.com/tonydeng/git-toolkit/raw/github/golang/dist/git-toolkit_linux_amd64)
+- [Linux 32](https://github.com/tonydeng/git-toolkit/raw/github/golang/dist/git-toolkit_linux_386)
 
 ### 查看版本
 
