@@ -131,7 +131,7 @@ func GenSOB() string {
 	email := "Undefined"
 	emailIndex := 0
 
-	output := utils.MustExecRtOut("git", "var", "GIT_AUTHOR_IDENT")
+	output := utils.ExecRtOut("git", "var", "GIT_AUTHOR_IDENT")
 	authorInfo := strings.Fields(output)
 
 	for i := 0; i < len(authorInfo); i++ {
@@ -169,7 +169,7 @@ func Commit(cm *Message) {
 	}()
 
 	_ = t.Execute(f, cm)
-	utils.MustExec("git", "commit", "-F", f.Name())
+	utils.Exec("git", "commit", "-F", f.Name())
 
 	fmt.Println("\n✔ Always code as if the guy who ends up maintaining your code will be a violent psychopath who knows where you live.")
 }

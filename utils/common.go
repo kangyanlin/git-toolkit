@@ -11,12 +11,15 @@ import (
 	"runtime"
 )
 
+const Cmd = "git"
+
 var GitToolkitHome string
 var InstallPath string
 var HooksPath string
 var GitCMHookPath string
 var CurrentPath string
 
+// 安装路径等配置初始化
 func init() {
 
 	var err error
@@ -34,7 +37,8 @@ func init() {
 	CheckAndExit(err)
 }
 
-func CheckErr(err error) bool {
+// 判断是否有错误
+func IskErr(err error) bool {
 	if err != nil {
 		fmt.Println(err)
 		return false
@@ -42,13 +46,15 @@ func CheckErr(err error) bool {
 	return true
 }
 
+// 检查错误并退出
 func CheckAndExit(err error) {
-	if !CheckErr(err) {
+	if !IskErr(err) {
 		os.Exit(1)
 	}
 }
 
-func MustExec(name string, arg ...string) {
+// 执行命令，有错误则退出
+func Exec(name string, arg ...string) {
 	cmd := exec.Command(name, arg...)
 	cmd.Stdin = os.Stdin
 	cmd.Stdout = os.Stdout
@@ -56,7 +62,8 @@ func MustExec(name string, arg ...string) {
 	CheckAndExit(cmd.Run())
 }
 
-func MustExecRtOut(name string, arg ...string) string {
+// 执行命令并返回标准输出，有错误则退出
+func ExecRtOut(name string, arg ...string) string {
 	cmd := exec.Command(name, arg...)
 	cmd.Stdin = os.Stdin
 	cmd.Stderr = os.Stderr
@@ -64,24 +71,27 @@ func MustExecRtOut(name string, arg ...string) string {
 	b, err := cmd.Output()
 
 	if err != nil {
-		fmt.Print(err)
+		fmt.Println(err)
 		os.Exit(1)
 	}
 
 	return string(b)
 }
 
-func MustExecNoOut(name string, arg ...string) {
+// 执行命令忽略标准输出，有错误则退出
+func ExecNoOut(name string, arg ...string) {
 	cmd := exec.Command(name, arg...)
 	cmd.Stderr = os.Stderr
 	CheckAndExit(cmd.Run())
 }
 
+// 执行命令，当有错误将错误返回给调用者
 func TryExec(name string, arg ...string) error {
 	cmd := exec.Command(name, arg...)
 	return cmd.Run()
 }
 
+// 判断当前用户是否有root权限
 func Root() bool {
 	u, err := user.Current()
 	CheckAndExit(err)
@@ -116,7 +126,7 @@ func OSEditInput() string {
 	}
 
 	//执行编辑器
-	MustExec(editor, f.Name())
+	Exec(editor, f.Name())
 
 	raw, err := ioutil.ReadFile(f.Name())
 	CheckAndExit(err)
@@ -125,6 +135,7 @@ func OSEditInput() string {
 	return input
 }
 
+// 检查操作系统
 func CheckOS() {
 	if runtime.GOOS != "linux" && runtime.GOOS != "darwin" {
 		fmt.Println("Platform not support!")
