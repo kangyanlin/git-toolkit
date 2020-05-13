@@ -48,16 +48,16 @@ func Install(dir string) {
 // 设置Git整体定制配置
 func SetGlobalConfig() {
 	// 设置Alias
-	Exec(Cmd, "config", "--global", "alias.co", "checkout")
-	Exec(Cmd, "config", "--global", "alias.br", "branch")
-	Exec(Cmd, "config", "--global", "alias.st", "status")
-	Exec(Cmd, "config", "--global", "alias.lg", "log",
+	MustExec(Cmd, "config", "--global", "alias.co", "checkout")
+	MustExec(Cmd, "config", "--global", "alias.br", "branch")
+	MustExec(Cmd, "config", "--global", "alias.st", "status")
+	MustExec(Cmd, "config", "--global", "alias.lg", "log",
 		"--oneline", "--decorate", "--graph",
 		"--pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen (%cr) %C(bold blue)<%an>%Creset'",
 		"--abbrev-commit")
-	Exec(Cmd, "config", "--global", "alias.mrg", "merge", "--no-ff")
+	MustExec(Cmd, "config", "--global", "alias.mrg", "merge", "--no-ff")
 
 	// 设置自定义的HooksPath
 	fmt.Printf("📥 config set core.hooksPath %s\n", HooksPath)
-	Exec(Cmd, "config", "--global", "core.hooksPath", HooksPath)
+	MustExec(Cmd, "config", "--global", "core.hooksPath", HooksPath)
 }

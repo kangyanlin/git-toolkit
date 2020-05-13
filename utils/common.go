@@ -53,6 +53,15 @@ func CheckAndExit(err error) {
 	}
 }
 
+// 执行命令，忽略错误
+func MustExec(name string, arg ...string) {
+	cmd := exec.Command(name, arg...)
+	cmd.Stdin = os.Stdin
+	cmd.Stdout = os.Stdout
+	cmd.Stderr = os.Stderr
+	cmd.Run()
+}
+
 // 执行命令，有错误则退出
 func Exec(name string, arg ...string) {
 	cmd := exec.Command(name, arg...)

@@ -35,12 +35,12 @@ func Uninstall(dir string) {
 // 删除Git整体定制化设置
 func UnsetGlobalConfig() {
 	// 删除Alias配置
-	Exec(Cmd, "config", "--global", "--unset", "alias.co")
-	Exec(Cmd, "config", "--global", "--unset", "alias.br")
-	Exec(Cmd, "config", "--global", "--unset", "alias.st")
-	Exec(Cmd, "config", "--global", "--unset", "alias.lg")
-	Exec(Cmd, "config", "--global", "--unset", "alias.mrg")
+	MustExec(Cmd, "config", "--global", "--unset", "alias.co")
+	MustExec(Cmd, "config", "--global", "--unset", "alias.br")
+	MustExec(Cmd, "config", "--global", "--unset", "alias.st")
+	MustExec(Cmd, "config", "--global", "--unset", "alias.lg")
+	MustExec(Cmd, "config", "--global", "--unset", "alias.mrg")
 
 	// 删除hooksPath配置
-	Exec("git", "config", "--global", "--unset", "core.hooksPath")
+	MustExec(Cmd, "config", "--global", "--unset", "core.hooksPath")
 }
