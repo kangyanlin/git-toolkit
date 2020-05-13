@@ -49,29 +49,29 @@ const CommitTpl = `{{ .Emoji }} {{ .Type }}({{ .Scope }}): {{ .Subject }}
 const CommitMessagePattern = `^(?:fixup!\s*)?(\w*)(\(([\w\$\.\*/-].*)\))?\: (.*)|^Merge\ branch(.*)`
 
 func CheckGitProject() {
-	utils.MustExecNoOut(Cmd, "rev-parse", "--show-toplevel")
+	utils.ExecNoOut(Cmd, "rev-parse", "--show-toplevel")
 }
 
 func CheckStageFiles() bool {
-	output := utils.MustExecRtOut(Cmd, "diff", "--cached", "--name-only")
+	output := utils.ExecRtOut(Cmd, "diff", "--cached", "--name-only")
 	return strings.TrimSpace(output) != ""
 }
 
 func CheckLastCommitInfo() *[]string {
-	title := utils.MustExecRtOut(Cmd, "log", "-1", "--pretty=format:%s")
-	desc := utils.MustExecRtOut(Cmd, "log", "-1", "--pretty=format:%b")
+	title := utils.ExecRtOut(Cmd, "log", "-1", "--pretty=format:%s")
+	desc := utils.ExecRtOut(Cmd, "log", "-1", "--pretty=format:%b")
 	return &[]string{title, desc}
 }
 
 func Checkout(prefix CommitType, branch string) {
-	utils.MustExec(Cmd, "checkout", "-b", string(prefix)+"/"+branch)
+	utils.Exec(Cmd, "checkout", "-b", string(prefix)+"/"+branch)
 }
 
 func GetCurrentBranch() string {
 	// 1.8+ git symbolic-ref --short HEAD
-	return strings.TrimSpace(utils.MustExecRtOut(Cmd, "rev-parse", "--abbrev-ref", "HEAD"))
+	return strings.TrimSpace(utils.ExecRtOut(Cmd, "rev-parse", "--abbrev-ref", "HEAD"))
 }
 
 func Push() {
-	utils.MustExec(Cmd, "push", "origin", strings.TrimSpace(GetCurrentBranch()))
+	utils.Exec(Cmd, "push", "origin", strings.TrimSpace(GetCurrentBranch()))
 }

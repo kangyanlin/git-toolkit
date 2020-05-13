@@ -41,6 +41,6 @@ func UnsetGlobalConfig() {
 	MustExec(Cmd, "config", "--global", "--unset", "alias.lg")
 	MustExec(Cmd, "config", "--global", "--unset", "alias.mrg")
 
-	// 删除hooksPaht配置
-	MustExec("git", "config", "--global", "--unset", "core.hooksPath")
+	// 删除hooksPath配置
+	MustExec(Cmd, "config", "--global", "--unset", "core.hooksPath")
 }
